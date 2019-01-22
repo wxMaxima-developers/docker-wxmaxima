@@ -21,17 +21,6 @@ RUN cd gnuplot-main && \
     make && \
     make install
 
-RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
-    cd maxima-code && \
-    git checkout 5f91fb1188c5ee10ce9e933a2f3137364f925da6
-
-RUN cd maxima-code && \
-    mkdir dist && \
-    ./bootstrap && \
-    ./configure --enable-sbcl --prefix=`pwd`/dist && \
-    make && \
-    make install
-
 RUN wget 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxWidgets-3.1.2.tar.bz2' && \
     bzcat wxWidgets-3.1.2.tar.bz2 | tar xvf -
 RUN cd wxWidgets-3.1.2 && \
@@ -50,6 +39,17 @@ RUN cd wxmaxima-Version-19.01.1 && \
     cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst .. && \
     cmake -- build . && \
     cmake --build . -- install
+
+RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
+    cd maxima-code && \
+    git checkout 5f91fb1188c5ee10ce9e933a2f3137364f925da6
+
+RUN cd maxima-code && \
+    mkdir dist && \
+    ./bootstrap && \
+    ./configure --enable-sbcl --prefix=`pwd`/dist && \
+    make && \
+    make install
 
 COPY appimagetool-x86_64.AppImage /
 RUN chmod +x appimagetool-x86_64.AppImage
