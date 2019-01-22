@@ -23,7 +23,7 @@ RUN cd gnuplot-main && \
 
 RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
     cd maxima-code && \
-    git checkout bdf73e5f41b4a493957ebb118649d954a2d71ec8
+    git checkout 5f91fb1188c5ee10ce9e933a2f3137364f925da6
 
 RUN cd maxima-code && \
     mkdir dist && \
@@ -71,7 +71,6 @@ RUN cp -a /usr/local/lib/libwx* usr/lib
 
 RUN mkdir maxima-inst && \
     (cd ../maxima-code/dist && tar cf - *) | (cd maxima-inst && tar xf -)
-RUN sed -ie 's/-n "\$MAXIMA_IMAGESDIR/! -d "\$MAXIMA_DEFAULT_IMAGESDIR/' maxima-inst/bin/maxima
 RUN ln -s share/info maxima-inst/info
 RUN ln -s ../../maxima-inst/bin/maxima usr/bin/maxima
 
