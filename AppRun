@@ -1,6 +1,7 @@
 #!/bin/sh
 
 PATH="$APPDIR/usr/bin:$PATH"
+export PATH
 
 MAXIMA_PREFIX=$APPDIR/maxima-inst
 export MAXIMA_PREFIX

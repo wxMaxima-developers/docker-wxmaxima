@@ -47,7 +47,7 @@ RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
 RUN cd maxima-code && \
     mkdir dist && \
     ./bootstrap && \
-    ./configure --enable-sbcl --prefix=`pwd`/dist && \
+    ./configure --enable-sbcl-exec --prefix=`pwd`/dist && \
     make && \
     make install
 
