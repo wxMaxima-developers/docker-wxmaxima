@@ -31,14 +31,12 @@ RUN cd wxWidgets-3.1.2 && \
     make install && \
     ldconfig
 
-RUN wget 'https://github.com/wxMaxima-developers/wxmaxima/archive/Version-19.01.1.tar.gz' && \
-    zcat Version-19.01.1.tar.gz | tar xf -
-RUN cd wxmaxima-Version-19.01.1 && \
-    mkdir -p build && \
-    cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst .. && \
-    cmake -- build . && \
-    cmake --build . -- install
+RUN wget -O libpng-1.6.36.tar 'https://sourceforge.net/projects/libpng/files/libpng16/1.6.36/libpng-1.6.36.tar.gz/download' && \
+    zcat libpng-1.6.36.tar | tar xvf -
+RUN cd libpng-1.6.36 && \
+    ./configure && \
+    make && \
+    make install
 
 RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
     cd maxima-code && \
@@ -47,9 +45,20 @@ RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
 RUN cd maxima-code && \
     mkdir dist && \
     ./bootstrap && \
-    ./configure --enable-sbcl-exec --prefix=`pwd`/dist && \
+    ./configure --enable-sbcl --prefix=`pwd`/dist && \
     make && \
     make install
+
+RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
+    cd wxmaxima && \
+    git checkout 493573fa332fa9e5e75e09282e6a311d4d9c3082
+
+RUN cd wxmaxima && \
+    mkdir -p build && \
+    cd build && \
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst .. && \
+    cmake -- build . && \
+    cmake --build . -- install
 
 COPY appimagetool-x86_64.AppImage /
 RUN chmod +x appimagetool-x86_64.AppImage
@@ -67,7 +76,7 @@ RUN (cd .. && tar cf - sbcl) | tar xf -
 RUN ln -s ../../sbcl/run-sbcl.sh usr/bin/sbcl
 
 RUN mkdir -p usr/lib
-RUN cp -a /usr/local/lib/libwx* usr/lib
+RUN cp -a /usr/local/lib/libwx* /usr/local/lib/libpng* usr/lib
 
 RUN mkdir maxima-inst && \
     (cd ../maxima-code/dist && tar cf - *) | (cd maxima-inst && tar xf -)

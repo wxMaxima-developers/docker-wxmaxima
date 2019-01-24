@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH
 GNUPLOT_DRIVER_DIR=$APPDIR/gnuplot-inst/libexec/gnuplot/5.2
 export GNUPLOT_DRIVER_DIR
 
-$APPDIR/usr/bin/wxmaxima
+$APPDIR/usr/bin/wxmaxima -m $APPDIR/usr/bin/maxima
