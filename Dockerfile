@@ -1,9 +1,16 @@
-FROM debian:stable
+FROM debian:oldstable
 
 RUN apt-get update && apt-get -y install git autoconf python binutils \
-    texinfo gcc cmake libtool vim desktop-file-utils pkgconf libcairo2-dev \
+    texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
     libgtk-3-dev doxygen
+
+RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
+    zcat cmake-3.13.3.tar.gz | tar xvf - && \
+    cd cmake-3.13.3 && \
+    ./bootstrap && \
+    make && \
+    make install
 
 RUN wget 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.15-x86-64-linux-binary.tar.bz2' -O /tmp/sbcl.tar.bz2 && \
     mkdir /sbcl && \
@@ -31,9 +38,9 @@ RUN cd wxWidgets-3.1.2 && \
     make install && \
     ldconfig
 
-RUN wget -O libpng-1.6.36.tar 'https://sourceforge.net/projects/libpng/files/libpng16/1.6.36/libpng-1.6.36.tar.gz/download' && \
-    zcat libpng-1.6.36.tar | tar xvf -
-RUN cd libpng-1.6.36 && \
+RUN wget -O libpng-1.2.59.tar 'https://sourceforge.net/projects/libpng/files/libpng12/1.2.59/libpng-1.2.59.tar.gz/download' && \
+    zcat libpng-1.2.59.tar | tar xvf -
+RUN cd libpng-1.2.59 && \
     ./configure && \
     make && \
     make install
@@ -45,7 +52,7 @@ RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
 RUN cd maxima-code && \
     mkdir dist && \
     ./bootstrap && \
-    ./configure --enable-sbcl --prefix=`pwd`/dist && \
+    ./configure --enable-sbcl-exec --prefix=`pwd`/dist && \
     make && \
     make install
 
