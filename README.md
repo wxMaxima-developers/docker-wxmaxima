@@ -23,3 +23,9 @@ Finally, set the executable flag so that the executable can be run:
 ```
 $ chmod +x wxmaxima-x86_64.AppImage
 ```
+
+All of these commands have been combined to a shell script,
+
+```
+$ build.sh
+```
