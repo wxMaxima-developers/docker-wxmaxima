@@ -1,3 +1,6 @@
+# If we start with a more recent debian version we depend on a glibc that is at
+# least as new as the one shipped with this version excluding users of
+# debian-oldstable
 FROM debian:oldstable
 
 RUN apt-get update && apt-get -y install git autoconf python binutils \
@@ -5,6 +8,8 @@ RUN apt-get update && apt-get -y install git autoconf python binutils \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
     libgtk-3-dev doxygen
 
+# Debian-oldstable provides too old an cmake3 version for building wxMaxima.
+# At least the debian-oldstable that was active in Jan 2019 did.
 RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
     zcat cmake-3.13.3.tar.gz | tar xvf - && \
     cd cmake-3.13.3 && \
@@ -12,7 +17,9 @@ RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.
     make && \
     make install
 
-RUN wget 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.15-x86-64-linux-binary.tar.bz2' -O /tmp/sbcl.tar.bz2 && \
+# Debian-oldstable provides a sbcl. But as sbcl is evolving rapidly we want to use
+# a more recent version.
+RUN wget 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.16-x86-64-linux-binary.tar.bz2' -O /tmp/sbcl.tar.bz2 && \
     mkdir /sbcl && \
     tar jxvf /tmp/sbcl.tar.bz2 --strip-components=1 -C /sbcl && \
     cd /sbcl && \
@@ -47,7 +54,7 @@ RUN cd libpng-1.2.59 && \
 
 RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
     cd maxima-code && \
-    git checkout 5f91fb1188c5ee10ce9e933a2f3137364f925da6
+    git checkout 5.42.2
 
 RUN cd maxima-code && \
     mkdir dist && \
@@ -56,6 +63,8 @@ RUN cd maxima-code && \
     make && \
     make install
 
+# We need to use a wxMaxima that is new enough to include the "-m" switch
+# which excludes the current release.
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
     git checkout 493573fa332fa9e5e75e09282e6a311d4d9c3082
