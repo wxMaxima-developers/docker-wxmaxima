@@ -52,9 +52,11 @@ RUN cd libpng-1.2.59 && \
     make && \
     make install
 
+ENV maxima_build tags/5.42.2
+
 RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
     cd maxima-code && \
-    git checkout 5.42.2
+    git checkout ${maxima_build}
 
 RUN cd maxima-code && \
     mkdir dist && \
@@ -65,9 +67,11 @@ RUN cd maxima-code && \
 
 # We need to use a wxMaxima that is new enough to include the "-m" switch
 # which excludes the current release.
+ENV wxmaxima_build ae6bc1663110ce6f56a1deaaf2a2a7e6876a2ee0
+
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
-    git checkout 493573fa332fa9e5e75e09282e6a311d4d9c3082
+    git checkout ${wxmaxima_build}
 
 RUN cd wxmaxima && \
     mkdir -p build && \
