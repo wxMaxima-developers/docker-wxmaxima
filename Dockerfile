@@ -65,8 +65,6 @@ RUN cd maxima-code && \
     make && \
     make install
 
-# We need to use a wxMaxima that is new enough to include the "-m" switch
-# which excludes the current release.
 ENV wxmaxima_build Version-19.01.3
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
