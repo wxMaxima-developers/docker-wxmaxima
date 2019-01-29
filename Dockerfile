@@ -67,7 +67,7 @@ RUN cd maxima-code && \
 
 # We need to use a wxMaxima that is new enough to include the "-m" switch
 # which excludes the current release.
-ENV wxmaxima_build ae6bc1663110ce6f56a1deaaf2a2a7e6876a2ee0
+ENV wxmaxima_build Version-19.01.3
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
