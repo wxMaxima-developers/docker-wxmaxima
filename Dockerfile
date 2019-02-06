@@ -1,7 +1,7 @@
 # If we start with a more recent debian version we depend on a glibc that is at
 # least as new as the one shipped with this version excluding users of
 # debian-oldstable
-FROM debian:oldstable
+FROM ubuntu:trusty
 
 RUN apt-get update && apt-get -y install git autoconf python binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
