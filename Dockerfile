@@ -40,7 +40,7 @@ RUN wget 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxWidg
 RUN cd wxWidgets-3.1.2 && \
     mkdir buildgtk && \
     cd buildgtk && \
-    ../configure --with-gtk && \
+    ../configure --with-gtk --disable-shared && \
     make && \
     make install && \
     ldconfig
@@ -74,7 +74,7 @@ RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
 RUN cd wxmaxima && \
     mkdir -p build && \
     cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst .. && \
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst  -DCMAKE_CXX_FLAGS="-static -static-libgcc -static-libstdc++" -DCMAKE_LD_FLAGS="-static -static-libgcc -static-libstdc++" .. && \
     cmake -- build . && \
     cmake --build . -- install
 
