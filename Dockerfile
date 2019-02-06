@@ -3,6 +3,8 @@
 # debian-oldstable
 FROM ubuntu:trusty
 
+ARG ARCH=x86_64
+
 RUN apt-get update && apt-get -y install git autoconf python binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
@@ -78,9 +80,9 @@ RUN cd wxmaxima && \
     cmake -- build . && \
     cmake --build . -- install
 
-COPY appimagetool-x86_64.AppImage /
-RUN chmod +x appimagetool-x86_64.AppImage
-RUN ./appimagetool-x86_64.AppImage --appimage-extract && \
+COPY appimagetool-$ARCH.AppImage /
+RUN chmod +x appimagetool-$ARCH.AppImage
+RUN ./appimagetool-$ARCH.AppImage --appimage-extract && \
     cp -R squashfs-root/* .
 
 RUN mkdir maxima-squashfs
@@ -113,4 +115,4 @@ COPY wxmaxima.desktop .
 COPY maxima.png .
 
 WORKDIR /
-RUN ARCH=x86_64 appimagetool maxima-squashfs
+RUN ARCH=$ARCH appimagetool maxima-squashfs
