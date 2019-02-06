@@ -113,4 +113,4 @@ COPY wxmaxima.desktop .
 COPY maxima.png .
 
 WORKDIR /
-RUN ARCH=x86_64 appimagetool maxima-squashfs
+RUN ARCH=`uname -a` appimagetool maxima-squashfs
