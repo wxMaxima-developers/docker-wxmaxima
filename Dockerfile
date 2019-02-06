@@ -48,7 +48,7 @@ RUN cd wxWidgets-3.1.2 && \
 RUN wget -O libpng-1.2.59.tar 'https://sourceforge.net/projects/libpng/files/libpng12/1.2.59/libpng-1.2.59.tar.gz/download' && \
     zcat libpng-1.2.59.tar | tar xvf -
 RUN cd libpng-1.2.59 && \
-    ./configure && \
+    ./configure --enable-static --disable-shared && \
     make && \
     make install
 
