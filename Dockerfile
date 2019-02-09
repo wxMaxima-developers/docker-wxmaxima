@@ -1,7 +1,8 @@
 # If we start with a more recent debian version we depend on a glibc that is at
 # least as new as the one shipped with this version excluding users of
 # debian-oldstable
-FROM ubuntu:trusty
+#FROM ubuntu:trusty
+FROM debian:oldstable
 
 ARG ARCH=x86_64
 
@@ -67,7 +68,7 @@ RUN cd maxima-code && \
     make && \
     make install
 
-ENV wxmaxima_build Version-19.01.3
+ENV wxmaxima_build Version-19.02.0
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
