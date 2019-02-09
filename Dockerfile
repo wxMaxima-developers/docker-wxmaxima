@@ -1,24 +1,15 @@
 # If we start with a more recent debian version we depend on a glibc that is at
 # least as new as the one shipped with this version excluding users of
 # debian-oldstable
-#FROM ubuntu:trusty
-FROM debian:oldstable
+FROM ubuntu:trusty
+#FROM debian:oldstable
 
 ARG ARCH=x86_64
 
 RUN apt-get update && apt-get -y install git autoconf python binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
-    libgtk-3-dev doxygen
-
-# Debian-oldstable provides too old an cmake3 version for building wxMaxima.
-# At least the debian-oldstable that was active in Jan 2019 did.
-RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
-    zcat cmake-3.13.3.tar.gz | tar xvf - && \
-    cd cmake-3.13.3 && \
-    ./bootstrap && \
-    make && \
-    make install
+    libgtk-3-dev doxygen libatspi2.0-dev
 
 # Debian-oldstable provides a sbcl. But as sbcl is evolving rapidly we want to use
 # a more recent version.
@@ -43,7 +34,7 @@ RUN wget 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxWidg
 RUN cd wxWidgets-3.1.2 && \
     mkdir buildgtk && \
     cd buildgtk && \
-    ../configure --with-gtk --disable-shared && \
+    ../configure --with-gtk=3 && \
     make && \
     make install && \
     ldconfig
@@ -51,7 +42,7 @@ RUN cd wxWidgets-3.1.2 && \
 RUN wget -O libpng-1.2.59.tar 'https://sourceforge.net/projects/libpng/files/libpng12/1.2.59/libpng-1.2.59.tar.gz/download' && \
     zcat libpng-1.2.59.tar | tar xvf -
 RUN cd libpng-1.2.59 && \
-    ./configure --enable-static --disable-shared && \
+    ./configure  && \
     make && \
     make install
 
@@ -68,6 +59,15 @@ RUN cd maxima-code && \
     make && \
     make install
 
+# Debian-oldstable provides too old an cmake3 version for building wxMaxima.
+# At least the debian-oldstable that was active in Jan 2019 did.
+RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
+    zcat cmake-3.13.3.tar.gz | tar xvf - && \
+    cd cmake-3.13.3 && \
+    ./bootstrap && \
+    make && \
+    make install
+
 ENV wxmaxima_build Version-19.02.0
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
@@ -77,7 +77,7 @@ RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
 RUN cd wxmaxima && \
     mkdir -p build && \
     cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst  -DCMAKE_CXX_FLAGS="-static -static-libgcc -static-libstdc++" -DCMAKE_LD_FLAGS="-static -static-libgcc -static-libstdc++" .. && \
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst  -DCMAKE_CXX_FLAGS="-static-libgcc -static-libstdc++" -DCMAKE_LD_FLAGS="-static-libgcc -static-libstdc++" .. && \
     cmake -- build . && \
     cmake --build . -- install
 
