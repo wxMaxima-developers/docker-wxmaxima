@@ -68,7 +68,7 @@ RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.
     make && \
     make install
 
-ENV wxmaxima_build Version-19.05.1
+ENV wxmaxima_build Version-19.05.2
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
