@@ -46,7 +46,7 @@ RUN cd libpng-1.2.59 && \
     make && \
     make install
 
-ENV maxima_build tags/5.42.2
+ENV maxima_build tags/5.43.0
 
 RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
     cd maxima-code && \
@@ -68,7 +68,7 @@ RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.
     make && \
     make install
 
-ENV wxmaxima_build Version-19.05.2
+ENV wxmaxima_build Version-19.05.6
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
