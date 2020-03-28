@@ -6,7 +6,7 @@ FROM ubuntu:trusty
 
 ARG ARCH=x86_64
 
-RUN apt-get update && apt-get -y install git autoconf python binutils \
+RUN apt-get update && apt-get -q -y install git autoconf python binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
     libgtk-3-dev doxygen libatspi2.0-dev
