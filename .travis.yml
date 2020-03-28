@@ -23,5 +23,6 @@ deploy:
   edge: true
   file: "wxmaxima-x86_64.AppImage"
   skip_cleanup: true
+  token: $TRAVIS_DEPLOY_KEY
   on:
     tags: true
