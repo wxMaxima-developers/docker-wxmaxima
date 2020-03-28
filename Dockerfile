@@ -9,7 +9,7 @@ ARG ARCH=x86_64
 RUN apt-get update && apt-get -q -y install git autoconf python binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
-    libgtk-3-dev doxygen libatspi2.0-dev libomp-dev
+    libgtk-3-dev doxygen libatspi2.0-dev
 
 # Debian-oldstable provides a sbcl. But as sbcl is evolving rapidly we want to use
 # a more recent version.
