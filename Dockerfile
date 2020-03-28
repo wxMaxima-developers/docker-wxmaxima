@@ -29,7 +29,7 @@ RUN cd gnuplot-main && \
     make -s && \
     make install
 
-RUN --quiet wget 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
+RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
     bzcat wxWidgets-3.1.3.tar.bz2 | tar xf -
 RUN cd wxWidgets-3.1.3 && \
     mkdir buildgtk && \
