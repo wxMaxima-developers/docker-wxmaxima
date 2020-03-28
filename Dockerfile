@@ -15,7 +15,7 @@ RUN apt-get update && apt-get -y install git autoconf python binutils \
 # a more recent version.
 RUN wget 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.16-x86-64-linux-binary.tar.bz2' -O /tmp/sbcl.tar.bz2 && \
     mkdir /sbcl && \
-    tar jxvf /tmp/sbcl.tar.bz2 --strip-components=1 -C /sbcl && \
+    tar jxf /tmp/sbcl.tar.bz2 --strip-components=1 -C /sbcl && \
     cd /sbcl && \
     sh install.sh && \
     rm -f /tmp/sbcl.tar.bz2
@@ -29,9 +29,9 @@ RUN cd gnuplot-main && \
     make -s && \
     make install
 
-RUN wget 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxWidgets-3.1.2.tar.bz2' && \
-    bzcat wxWidgets-3.1.2.tar.bz2 | tar xvf -
-RUN cd wxWidgets-3.1.2 && \
+RUN wget 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
+    bzcat wxWidgets-3.1.3.tar.bz2 | tar xf -
+RUN cd wxWidgets-3.1.3 && \
     mkdir buildgtk && \
     cd buildgtk && \
     ../configure --with-gtk=3 && \
@@ -40,7 +40,7 @@ RUN cd wxWidgets-3.1.2 && \
     ldconfig
 
 RUN wget -O libpng-1.2.59.tar 'https://sourceforge.net/projects/libpng/files/libpng12/1.2.59/libpng-1.2.59.tar.gz/download' && \
-    zcat libpng-1.2.59.tar | tar xvf -
+    zcat libpng-1.2.59.tar | tar xf -
 RUN cd libpng-1.2.59 && \
     ./configure  && \
     make -s && \
@@ -62,7 +62,7 @@ RUN cd maxima-code && \
 # Debian-oldstable provides too old an cmake3 version for building wxMaxima.
 # At least the debian-oldstable that was active in Jan 2019 did.
 RUN wget 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
-    zcat cmake-3.13.3.tar.gz | tar xvf - && \
+    zcat cmake-3.13.3.tar.gz | tar xf - && \
     cd cmake-3.13.3 && \
     ./bootstrap && \
     make -s && \
