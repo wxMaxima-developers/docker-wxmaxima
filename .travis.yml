@@ -15,6 +15,7 @@ notifications:
     on_failure: change
 git:
   depth: 15
+
 script:
 - ./build.sh
 
@@ -24,6 +25,4 @@ deploy:
   draft: false
   file: "wxmaxima-x86_64.AppImage"
   skip_cleanup: true
-  token:
-    secure: "ITHuJs3oM7sJdaajnBceOSu84a7PSh+ogYv61NFTuefQqFt5RTmDJDy4qTtk4Z/irpGMVwjU+Q4L61UiG9tx6OM7lmdc63piYJ4+/Ep15bhsjCt6Ub+Cr2YizL7HLC7jdv+gBSf5trIcOTCXCjRMZWNJembLaEJkOyUsqEs82jCFSJpqts6SVAWmW+faSW5tOvGR3YxDZGl3msfzWjBnDbT5POaFf4sKyZ5lZjGHdN8nCWjdANtPhhP3nG5agWGxrUPTRu/WcgkwrMvmYIRYPWkzUoAPNSuk9r5JguhXN7SRHJSKsBss4U8diY5n2+THSsWAxvn6ePYSp7NyypDJAbcrtMj+YAkt7JO7K0lLWPCKRKLJyLreNnPOKgzp/2qJKVQr2oPrj8SubVpJKEtOr8/rtsacevWgMMDsEzUt1FplLaDBOvW08Dgbn78tRPsLD8qSbMIJ8HkWso/GNweHcMnfwXx+tUvIpWv8u5xyZ015CznKUGh5g0VHC7PYUxB21iygHLRB4B9vfIiz/r3t3f3fSj2McNxLNOjd8c25LoVerq0vWu0/sBaOZgZDg/9ze4Gg8aR8mSdnr5JZRk4qnNsjGN/CfGPCJPR2IXvTepCzoZKp6su/QTfakxCDqMuOXpms68D6yTlmD+EwEf5j2rOMmF8ZjcWkB4NIhidH8jk="  on:
-    tags: true
+  tags: true
