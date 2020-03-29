@@ -16,19 +16,17 @@ notifications:
     on_failure: change
 git:
   depth: 15
-
 script:
-- ./build.sh
+- "./build.sh"
 - chmod +x wxmaxima-x86_64.AppImage
-
 deploy:
   provider: releases
   edge: true
   draft: false
-  file: "wxmaxima-x86_64.AppImage"
+  file: wxmaxima-x86_64.AppImage
   skip_cleanup: true
   on:
     all_branches: true
     tags: true
-  api_key:
-    secure: "hR18yv73buNSsp6lBCqe7LZmL1SfK7HZs0f3gnh1I5b4yga8Rsls12amfKXqqy+y8Zl0Zm7jH04vkMziJvcSNY8qo/1snttyWaBnIVeFijSW/4bclYTURVbzFERsmFCsN0FaST7bKqSP0I+Pe+639Wq2cTiaxC5gPFGQkHsR0INatGWnegdkABKoe7antts/Q/CSw0QVDLDUAxCwIDaAujzw3Nl0UGFd06Ese+or/i3isV+/WMIk4SxD+iE9kMpZJkipuBxGVXgEHr0cxwPo4Cvv1isikI2zIVMWGiosXIlSRZ0xygwY2lGptJVVfwSWU0ZaiMZ/ioJpAHycX2qMOziO6+U6zz8WkhdufdgRhZztViYuQKfi8K1ja5lMVtxBPJD/I3vptMUTraIYHaaR4ljNw1TtqMkVGp15zvlIp6NjxSv325Re8MU9mCiEyKJWxnQzJ2Gvj++syRLnBW5zW52Z8pqDPL1SwzniLVDKv/16x3Z4g8okTL27zoijU8y/C62be8SRnBZLWkY/YPpTSZkSf7YCf3bLfjtL54JpfAa9FxxBo8XbKH8KttzOH1YyDNh4qH6lIs4B3HYOpZFSw96t0fFpF0wlpqMir+k3Mc9DIQYqEtqantWm6uSmKMBBwQ/NvxHTJIFELsIhWg0qvw9t6/oRJCEf0Gqt62eHAFI="
+  api-key:
+    secure: nnI1Cv9QkDJ1M4xqiwC7Mh37QIuNwOGa9N01PFUl8A/J46pFDdpojZJKUe7XijT7c/Bv8yTkru/IWWW/9yGL60mIH57TRtfBR8qAYm5hA05sLELW0uJVTI/uN8DCHmBBpSg19UuDWk8GRuPL06xmAtRueiKkm9M7tifz/l6Gv8tCFu1xj/V9CLmZn56iuNln7jqFyLU984vVrVlZMm/4tKi0GPXP/GW6HT/zRhMej82+9CfBZsj+vk9zN7xNfyFHfErwR1KXdZmXHj3fZN8e+T5p6TCIt/TQuLzYBX1KZmsVXSqdKlgcWKLaIPLj5+J+dCnTtgoCpMJ4Oh38s4EBxX/6Z7bXp3Rhu2niAleHLqHsov+FObC7WklNIMDkg1b5d2WuesdeyKmZz12BSofojAPOCRneykbyEf/zqVzCQNZRSQrZ0zcCbIYypiqBwe8YSXhG3Tjc/M7N1A1FxYrU9Rz8U8bywGmcgAGsNLYerAZEIzuHvL56U460SOi5AP3iy3AH3JRYCRoQp9TRLEPGoLdJztzmY99A24wn7oUPJgV//58HKqlhHTgYFLCylQHhThVJTJzrcMN370rlemrWTdqaE7DVEc3r9vlQuRIS3fzu82HYmDGq9AkRfdcskWAnzFEhPmP0xE9FAd1JfKjvldkWawBpq1yRVq8e6oVVfQA=
