@@ -18,6 +18,8 @@ git:
 
 script:
 - ./build.sh
+- chmod +x wxmaxima-x86_64.AppImage
+- ./wxmaxima-x86_64.AppImage --batch test.wxmx
 
 deploy:
   provider: releases
