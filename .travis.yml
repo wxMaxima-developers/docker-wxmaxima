@@ -9,7 +9,6 @@ addons:
   apt:
     packages:
     - docker
-    - xvfb
 notifications:
   email:
     on_success: change
@@ -20,7 +19,6 @@ git:
 script:
 - ./build.sh
 - chmod +x wxmaxima-x86_64.AppImage
-- xvfb-run ./wxmaxima-x86_64.AppImage --batch test.wxmx
 
 deploy:
   provider: releases
