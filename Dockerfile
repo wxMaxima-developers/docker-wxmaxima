@@ -22,7 +22,7 @@ RUN wget --quiet 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.16-x86-64-lin
 
 RUN git clone https://git.code.sf.net/p/gnuplot/gnuplot-main && \
     cd gnuplot-main && \
-    git checkout tags/5.2.6
+    git checkout tags/5.2.8
 RUN cd gnuplot-main && \
     ./prepare && \
     ./configure --prefix=`pwd`/dist && \
