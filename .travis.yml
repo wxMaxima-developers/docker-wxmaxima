@@ -29,3 +29,5 @@ deploy:
   file: wxmaxima-x86_64.AppImage
   on:
     repo: wxMaxima-developers/docker-wxmaxima
+    tags: true
+    all_branches: true
