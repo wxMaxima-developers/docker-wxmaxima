@@ -24,7 +24,7 @@ deploy:
   prerelease: false
   draft: false
   skip_cleanup: true
-  skip_cleanup: false
+  cleanup: false
   api_key:
     secure: swXj12BkScgPTttTZ1M9LR2088V5dNis2+chj8cP71DOtPmZCFE9E3B5y+w8PZladkoWIQdN/070KsE059cuuOM6n/5ZnGAI4OYDyUmJCPupI5IgAr0vxy9m8jiu3xMLQ2gnNuiz7M16YsMqfWQYHua0Wq0u/FywVmxxBzWy/SqzBiGyyKsar66s3SfSuk8On9QNd6RI/ybJmJEYCQihrOKRYimenvy1hdYJFMJ8Lq4eTo+3DOtzD5uh61sGxjiSMA7saU0W3/Nb9HX6JqGp5P4I5TuoPllttido0MgPnFjC8hA4wDtcHLcrtxpG3wJY+6iSbLHkCY3F7n6dNUOJ22ruEuP4HOjpaTgtuWzdZEE6gHcC/b1a8bZDVFqVqm0QeIo5/Y2bK2SgY52S2PrD0zOQS0fZno14v/Yl/7IGzfKjX/DLIgcFob6fP1i1JzKfk36h5b6QA3p1M5GTIxsAyQ53qAaKza16VyHM2j/6+3qSN5dk4MQG7xqk9E0RzybjC1Ah2AQD/PNjCuPjAQqdOF97KyCPughEsbKIWAe7B2+t4JvjFv2qhJVmoBDpXGci6kh39VN/ihUnULRsSKyZM5ItRtedTHpq247donLmMWuy08AJVV9c6qp7qyZ7v8vQp+8DBeqDelEPmeKQEiDuBf9liJ6HNB5JAzhl/LtT1as=
   file: wxmaxima-x86_64.AppImage
@@ -32,3 +32,15 @@ deploy:
     repo: wxMaxima-developers/docker-wxmaxima
     tags: true
     all_branches: true
+  provider: releases
+  prerelease: true
+  draft: true
+  skip_cleanup: true
+  cleanup: false
+  overwrite: true
+  api_key:
+    secure: swXj12BkScgPTttTZ1M9LR2088V5dNis2+chj8cP71DOtPmZCFE9E3B5y+w8PZladkoWIQdN/070KsE059cuuOM6n/5ZnGAI4OYDyUmJCPupI5IgAr0vxy9m8jiu3xMLQ2gnNuiz7M16YsMqfWQYHua0Wq0u/FywVmxxBzWy/SqzBiGyyKsar66s3SfSuk8On9QNd6RI/ybJmJEYCQihrOKRYimenvy1hdYJFMJ8Lq4eTo+3DOtzD5uh61sGxjiSMA7saU0W3/Nb9HX6JqGp5P4I5TuoPllttido0MgPnFjC8hA4wDtcHLcrtxpG3wJY+6iSbLHkCY3F7n6dNUOJ22ruEuP4HOjpaTgtuWzdZEE6gHcC/b1a8bZDVFqVqm0QeIo5/Y2bK2SgY52S2PrD0zOQS0fZno14v/Yl/7IGzfKjX/DLIgcFob6fP1i1JzKfk36h5b6QA3p1M5GTIxsAyQ53qAaKza16VyHM2j/6+3qSN5dk4MQG7xqk9E0RzybjC1Ah2AQD/PNjCuPjAQqdOF97KyCPughEsbKIWAe7B2+t4JvjFv2qhJVmoBDpXGci6kh39VN/ihUnULRsSKyZM5ItRtedTHpq247donLmMWuy08AJVV9c6qp7qyZ7v8vQp+8DBeqDelEPmeKQEiDuBf9liJ6HNB5JAzhl/LtT1as=
+  file: wxmaxima-x86_64.AppImage
+  on:
+    repo: wxMaxima-developers/docker-wxmaxima
+    branch: master
