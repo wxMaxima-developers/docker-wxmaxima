@@ -42,3 +42,10 @@ All of these commands have been combined to a shell script,
 ```
 $ build.sh
 ```
+
+Making an official release of the Appimage
+------------------------------------------
+
+In theory all that has to be made in order to generate an official release
+including a binary file is just creating a tag in this git repo. The rest
+is done by travis-ci.
