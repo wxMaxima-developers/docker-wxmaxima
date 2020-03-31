@@ -1,8 +1,21 @@
 Appimage build for wxMaxima
 ===========================
 
-Building Appimage
------------------
+What is it?
+-----------
+
+An AppImage is a a-complete-app-in-one-executable-file build of an application.
+
+How to download and use it
+--------------------------
+
+ * Download the appImage from https://github.com/wxMaxima-developers/docker-wxmaxima/releases
+ * Tell your operating system that this file is executable (using `chmod +x filename` or 
+   similar)
+ * Start the file.
+
+Building the Appimage yourself
+------------------------------
 
 To build the Appimage, run the following command:
 
