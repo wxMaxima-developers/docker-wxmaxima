@@ -68,7 +68,7 @@ RUN wget --quiet 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cma
     make -s && \
     make install
 
-ENV wxmaxima_build Version-20.04.0
+ENV wxmaxima_build Version-20.06.1
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
