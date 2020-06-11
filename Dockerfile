@@ -23,7 +23,7 @@ RUN git clone https://git.code.sf.net/p/gnuplot/gnuplot-main && \
 RUN cd gnuplot-main && \
     ./prepare && \
     ./configure --prefix=`pwd`/dist && \
-    make -s && \
+    make -s -j 2 && \
     make install
 
 RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
@@ -32,7 +32,7 @@ RUN cd wxWidgets-3.1.3 && \
     mkdir buildgtk && \
     cd buildgtk && \
     ../configure --with-gtk=3 && \
-    make -s && \
+    make -s -j 2&& \
     make install && \
     ldconfig
 
@@ -40,7 +40,7 @@ RUN wget --quiet -O libpng-1.2.59.tar 'https://sourceforge.net/projects/libpng/f
     zcat libpng-1.2.59.tar | tar xf -
 RUN cd libpng-1.2.59 && \
     ./configure  && \
-    make -s && \
+    make -s -j 2&& \
     make install
 
 ENV maxima_build tags/5.44.0
@@ -53,7 +53,7 @@ RUN cd maxima-code && \
     mkdir dist && \
     ./bootstrap && \
     ./configure --enable-sbcl-exec --enable-quiet-build --prefix=`pwd`/dist && \
-    make -s && \
+    make -s -j 2&& \
     make install
 
 # Debian-oldstable provides too old an cmake3 version for building wxMaxima.
@@ -62,7 +62,7 @@ RUN wget --quiet 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cma
     zcat cmake-3.13.3.tar.gz | tar xf - && \
     cd cmake-3.13.3 && \
     ./bootstrap && \
-    make -s && \
+    make -s -j 2&& \
     make install
 
 ENV wxmaxima_build Version-20.06.6
