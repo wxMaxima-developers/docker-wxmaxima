@@ -4,7 +4,6 @@ os:
 branches:
   except:
   - gh_pages
-  - master
 dist: trusty
 addons:
   apt:
