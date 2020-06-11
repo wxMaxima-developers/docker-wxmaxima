@@ -6,7 +6,7 @@ ARG ARCH=x86_64
 RUN apt-get update && apt-get -q -y install git autoconf python binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
-    libgtk-3-dev doxygen libatspi2.0-dev
+    libgtk-3-dev doxygen libatspi2.0-dev ninja-build
 
 # Debian-oldstable provides a sbcl. But as sbcl is evolving rapidly we want to use
 # a more recent version.
@@ -16,6 +16,15 @@ RUN wget --quiet 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.16-x86-64-lin
     cd /sbcl && \
     sh install.sh && \
     rm -f /tmp/sbcl.tar.bz2
+
+# Debian-oldstable provides too old an cmake3 version for building wxMaxima.
+# At least the debian-oldstable that was active in Jan 2019 did.
+RUN wget --quiet 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
+    zcat cmake-3.13.3.tar.gz | tar xf - && \
+    cd cmake-3.13.3 && \
+    ./bootstrap && \
+    make -s -j 2&& \
+    make install
 
 RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
     bzcat wxWidgets-3.1.3.tar.bz2 | tar xf -
@@ -51,15 +60,6 @@ RUN cd maxima-code && \
     mkdir dist && \
     ./bootstrap && \
     ./configure --enable-sbcl-exec --enable-quiet-build --prefix=`pwd`/dist && \
-    make -s -j 2&& \
-    make install
-
-# Debian-oldstable provides too old an cmake3 version for building wxMaxima.
-# At least the debian-oldstable that was active in Jan 2019 did.
-RUN wget --quiet 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
-    zcat cmake-3.13.3.tar.gz | tar xf - && \
-    cd cmake-3.13.3 && \
-    ./bootstrap && \
     make -s -j 2&& \
     make install
 
