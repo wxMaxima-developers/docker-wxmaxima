@@ -17,15 +17,6 @@ RUN wget --quiet 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.16-x86-64-lin
     sh install.sh && \
     rm -f /tmp/sbcl.tar.bz2
 
-RUN git clone https://git.code.sf.net/p/gnuplot/gnuplot-main && \
-    cd gnuplot-main && \
-    git checkout tags/5.2.8
-RUN cd gnuplot-main && \
-    ./prepare && \
-    ./configure --prefix=`pwd`/dist && \
-    make -s -j 2 && \
-    make install
-
 RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
     bzcat wxWidgets-3.1.3.tar.bz2 | tar xf -
 RUN cd wxWidgets-3.1.3 && \
@@ -35,6 +26,15 @@ RUN cd wxWidgets-3.1.3 && \
     make -s -j 2&& \
     make install && \
     ldconfig
+
+RUN git clone https://git.code.sf.net/p/gnuplot/gnuplot-main && \
+    cd gnuplot-main && \
+    git checkout tags/5.2.8
+RUN cd gnuplot-main && \
+    ./prepare && \
+    ./configure --prefix=`pwd`/dist && \
+    make -s -j 2 && \
+    make install
 
 RUN wget --quiet -O libpng-1.2.59.tar 'https://sourceforge.net/projects/libpng/files/libpng12/1.2.59/libpng-1.2.59.tar.gz/download' && \
     zcat libpng-1.2.59.tar | tar xf -
