@@ -1,8 +1,5 @@
-# If we start with a more recent debian version we depend on a glibc that is at
-# least as new as the one shipped with this version excluding users of
-# debian-oldstable
-FROM ubuntu:trusty
-#FROM debian:oldstable
+#FROM ubuntu:trusty
+FROM debian:oldstable
 
 ARG ARCH=x86_64
 
