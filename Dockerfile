@@ -29,10 +29,10 @@ RUN wget --quiet 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cma
 RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
     bzcat wxWidgets-3.1.3.tar.bz2 | tar xf -
 RUN cd wxWidgets-3.1.3 && \
-    cmake -G "Ninja" -DwxBUILD_SHARED=NO --config Release . && \
-    cmake --build . --config Release && \
-    cmake --build . --config Release --target install && \
-   ldconfig
+    ./configure && \
+    make -j 2 && \
+    make install && \
+    ldconfig
 
 RUN git clone https://git.code.sf.net/p/gnuplot/gnuplot-main && \
     cd gnuplot-main && \
