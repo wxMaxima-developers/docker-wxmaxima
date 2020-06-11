@@ -22,8 +22,8 @@ RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.
 RUN cd wxWidgets-3.1.3 && \
     mkdir buildgtk && \
     cd buildgtk && \
-    ../configure --with-gtk=3 && \
-    make -s -j 2&& \
+    ../configure --with-gtk=3 --disable-richtext && \
+    make -j 2&& \
     make install && \
     ldconfig
 
