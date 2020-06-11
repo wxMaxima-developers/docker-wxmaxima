@@ -20,12 +20,10 @@ RUN wget --quiet 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.16-x86-64-lin
 RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
     bzcat wxWidgets-3.1.3.tar.bz2 | tar xf -
 RUN cd wxWidgets-3.1.3 && \
-    mkdir buildgtk && \
-    cd buildgtk && \
-    ../configure --with-gtk=3 && \
-    make -j 2&& \
-    make install && \
-    ldconfig
+    cmake -G "Ninja" -DwxBUILD_SHARED=NO --config Release . && \
+    cmake --build . --config Release && \
+    cmake --build . --config Release --target install && \
+   ldconfig
 
 RUN git clone https://git.code.sf.net/p/gnuplot/gnuplot-main && \
     cd gnuplot-main && \
