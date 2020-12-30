@@ -19,9 +19,9 @@ jobs:
            sudo apt-get install runc
            sudo apt-get install containerd
            sudo apt-get install docker.io
+           sudo systemctl status docker
     - name: start_docker
       run: |
-           newgrp docker
            sudo usermod -aG docker $USER
            sudo gpasswd -a $USER docker
     - name: build
