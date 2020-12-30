@@ -25,6 +25,6 @@ jobs:
            newgrp docker
     - name: build
       run: |
-      	   docker run --help
            "./build.sh"
+           docker run --help
            chmod +x wxmaxima-x86_64.AppImage
