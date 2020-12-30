@@ -2,9 +2,6 @@ name: compile
 
 on: [push]
 
-env:
-  BUILD_TYPE: Release
-
 jobs:
   compile:
     runs-on: ubuntu-20.04
@@ -22,6 +19,10 @@ jobs:
            sudo apt-get install runc
            sudo apt-get install containerd
            sudo apt-get install docker.io
+    - name: run_docker
+           systemctl start docker
+	   sudo gpasswd -a $USER docker
+	   newgrp docker
     - name: build
       run: |
            "./build.sh"
