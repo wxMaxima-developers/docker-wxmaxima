@@ -7,7 +7,7 @@ env:
 
 jobs:
   compile:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout_git
@@ -19,7 +19,8 @@ jobs:
     - name: install_packages
       run: |
            sudo apt-get -q update
-           sudo apt-get -q install containerd.io docker.io
+           sudo apt-get -q install containerd
+           sudo apt-get -q install docker.io
     - name: build
       run: |
            "./build.sh"
