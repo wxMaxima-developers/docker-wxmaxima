@@ -20,6 +20,7 @@ jobs:
            sudo apt-get install containerd
            sudo apt-get install docker.io
     - name: start_docker
+      run: |
            systemctl start docker
            sudo gpasswd -a $USER docker
            newgrp docker
