@@ -24,6 +24,7 @@ jobs:
       run: |
            sudo usermod -aG docker $USER
            sudo gpasswd -a $USER docker
+	   id -nG
     - name: build
       run: |
            "./build.sh"
