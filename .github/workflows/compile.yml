@@ -18,7 +18,7 @@ jobs:
         fetch-depth: 15
     - name: install_packages
       run: |
-           sudo apt-get install docker
+           sudo apt-get install docker.io
     - name: build
       run: |
            "./build.sh"
