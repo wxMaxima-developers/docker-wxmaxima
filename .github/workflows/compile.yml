@@ -19,7 +19,7 @@ jobs:
     - name: install_packages
       run: |
            sudo apt-get -q update
-           sudo apt-get -q install docker.io
+           sudo apt-get -q install containerd.io docker.io
     - name: build
       run: |
            "./build.sh"
