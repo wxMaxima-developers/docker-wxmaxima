@@ -1,5 +1,5 @@
 #FROM ubuntu:trusty
-FROM debian:stable
+FROM debian:oldstable
 
 ARG ARCH=x86_64
 
