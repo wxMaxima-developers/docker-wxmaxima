@@ -1,5 +1,5 @@
 #FROM ubuntu:trusty
-FROM debian:oldstable
+FROM debian:stable
 
 ARG ARCH=x86_64
 
@@ -63,7 +63,7 @@ RUN cd maxima-code && \
     make -s -j 2&& \
     make install
 
-ENV wxmaxima_build Version-20.07.0
+ENV wxmaxima_build Version-20.12.1
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
