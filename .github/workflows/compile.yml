@@ -22,4 +22,4 @@ jobs:
     - name: build
       run: |
            "./build.sh"
-	   chmod +x wxmaxima-x86_64.AppImage
+           chmod +x wxmaxima-x86_64.AppImage
