@@ -21,10 +21,10 @@ jobs:
            sudo apt-get install docker.io
     - name: start_docker
       run: |
+           newgrp docker
            sudo usermod -aG docker $USER
            sudo gpasswd -a $USER docker
-           newgrp docker
     - name: build
       run: |
-           sudo "./build.sh"
-           sudo chmod a+x wxmaxima-x86_64.AppImage
+           "./build.sh"
+           chmod a+x wxmaxima-x86_64.AppImage
