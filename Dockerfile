@@ -63,7 +63,7 @@ RUN cd maxima-code && \
     make -s -j 2&& \
     make install
 
-ENV wxmaxima_build Version-20.12.2
+ENV wxmaxima_build Version-21.02.0
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
