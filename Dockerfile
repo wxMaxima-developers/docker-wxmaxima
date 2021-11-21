@@ -50,7 +50,7 @@ RUN cd libpng-1.2.59 && \
     make -s -j 2&& \
     make install
 
-ENV maxima_build tags/5.44.0
+ENV maxima_build tags/5.45.1
 
 RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
     cd maxima-code && \
@@ -63,7 +63,7 @@ RUN cd maxima-code && \
     make -s -j 2&& \
     make install
 
-ENV wxmaxima_build Version-21.05.0
+ENV wxmaxima_build Version-21.11.0
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
