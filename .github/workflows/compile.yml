@@ -3,6 +3,15 @@ on: [push]
 
 permissions:
   contents: read
+  actions: read
+  checks: read
+  deployments: write
+  issues: read
+  packages: read
+  pull-requests: none
+  repository-projects: read
+  security-events: read
+  statuses: write
 
 jobs:
   compile:
