@@ -2,7 +2,7 @@ name: compile
 on: [push]
 
 permissions:
-  contents: read
+  contents: write
   actions: read
   checks: read
   deployments: write
