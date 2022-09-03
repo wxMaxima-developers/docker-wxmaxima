@@ -10,7 +10,7 @@ RUN apt-get update && apt-get -q -y install git autoconf python binutils \
 
 # Debian-oldstable provides a sbcl. But as sbcl is evolving rapidly we want to use
 # a more recent version.
-RUN wget --quiet 'http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.16-x86-64-linux-binary.tar.bz2' -O /tmp/sbcl.tar.bz2 && \
+RUN wget --quiet 'http://prdownloads.sourceforge.net/sbcl/sbcl-2.2.8-x86-64-linux-binary.tar.bz2' -O /tmp/sbcl.tar.bz2 && \
     mkdir /sbcl && \
     tar jxf /tmp/sbcl.tar.bz2 --strip-components=1 -C /sbcl && \
     cd /sbcl && \
@@ -26,9 +26,9 @@ RUN wget --quiet 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cma
     make -s -j 2&& \
     make install
 
-RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2' && \
-    bzcat wxWidgets-3.1.3.tar.bz2 | tar xf -
-RUN cd wxWidgets-3.1.3 && \
+RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.0/wxWidgets-3.2.0.tar.bz2' && \
+    bzcat wxWidgets-3.2.0.tar.bz2 | tar xf -
+RUN cd wxWidgets-3.2.0 && \
     ./configure && \
     make -j 2 && \
     make install && \
@@ -63,7 +63,7 @@ RUN cd maxima-code && \
     make -s -j 2&& \
     make install
 
-ENV wxmaxima_build Version-22.05.0
+ENV wxmaxima_build Version-22.09.0
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
