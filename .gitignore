@@ -1,2 +1,8 @@
 *~
 *.AppImage
+wxmaxima
+flatpack
+maxima
+#*
+.flatpak_builder
+.flatpak-builder/*

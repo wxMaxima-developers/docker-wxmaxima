@@ -1,0 +1,11 @@
+app-id: com.github.wxMaxima-developers.wxmaxima
+runtime: org.freedesktop.Platform
+sdk: org.freedesktop.Sdk
+command: wxmaxima
+modules:
+  - name: wxmaxima
+    buildsystem: cmake
+    sources:
+      - type: git
+        url: https://github.com/wxMaxima-developers/wxmaxima.git
+        tag: "Version-22.05.0"
