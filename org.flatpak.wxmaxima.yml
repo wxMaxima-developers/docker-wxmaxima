@@ -1,0 +1,36 @@
+app-id: org.flatpak.wxMaxima
+runtime: org.gnome.Platform
+runtime-version: '42'
+sdk: org.gnome.Sdk
+command: wxmaxima
+modules:
+  - name: wxWidgets
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://github.com/wxWidgets/wxWidgets
+        branch: 3.2
+  - name: sbcl
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.2.8-x86-64-linux-binary.tar.bz2
+        sha512: db1b81b603cdf6b76147d13502d3c152b8a78c2119b9df59a4e3705c93bc5ab208491a4ba19e28e31813e7da13d2d8d3a1a493dc86e143a5725bebffdc10e397
+    build-commands:
+        - sh install.sh --prefix=/app
+  - name: maxima
+    buildsystem: autotools
+    config-opts:
+      - --enable-sbcl-exec
+    sources:
+      - type: git
+        url: https://peterpall@git.code.sf.net/p/maxima/code
+        branch: 5.46.0
+  - name: wxmaxima
+    buildsystem: cmake
+    sources:
+      - type: git
+        url: https://github.com/wxmaxima-developers/wxmaxima.git
+        branch: main
+#        branch: Version-20.09.0
+ 

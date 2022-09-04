@@ -27,9 +27,7 @@ jobs:
     - name: install_packages
       run: |
            sudo apt-get update
-           sudo apt-get install runc
-           sudo apt-get install containerd
-           sudo apt-get install docker.io
+           sudo apt-get install runc containerd docker.io
            sudo systemctl unmask docker
            sudo systemctl start docker
            sudo systemctl status docker
@@ -38,10 +36,16 @@ jobs:
            sudo usermod -aG docker $USER
            sudo gpasswd -a $USER docker
            id -nG
-    - name: build
+    - name: build_appimage
       run: |
            "./build_appimage.sh"
            chmod a+x wxmaxima-x86_64.AppImage
+#    - name: build_flatpack
+#      run: |
+#           sudo apt-get install flatpak flatpak-builder
+#           sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+#           flatpak install --or-update flathub org.gnome.Sdk//42 org.gnome.Platform/x86_64/42 -y
+#           flatpak-builder tmp org.flatpak.wxmaxima.yml
     - name: create_release
       if: startsWith(github.ref, 'refs/tags/')
       id: create_release
@@ -55,14 +59,4 @@ jobs:
           Automatic compilation on a new release
         draft: false
         prerelease: false
-    - name: upload_appimage
-      if: startsWith(github.ref, 'refs/tags/')
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./wxmaxima-x86_64.AppImage
-        asset_name: wxmaxima-x86_64.AppImage
-        asset_content_type: application/x-executable
+        artifacts: "./wxmaxima-x86_64.AppImage"
