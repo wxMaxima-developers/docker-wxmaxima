@@ -51,6 +51,6 @@ jobs:
       uses: docker://antonyurchenko/git-release:latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        RELEASE_NAME: ${{GITHUB_REF_NAME}}
+        RELEASE_NAME: $env:GITHUB_REF_NAME
       with:
         args: ./wxmaxima-x86_64.AppImage
