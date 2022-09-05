@@ -47,16 +47,9 @@ jobs:
 #           flatpak install --or-update flathub org.gnome.Sdk//42 org.gnome.Platform/x86_64/42 -y
 #           flatpak-builder tmp org.flatpak.wxmaxima.yml
     - name: create_release
-      if: startsWith(github.ref, 'refs/tags/')
-      id: create_release
-      uses: actions/create-release@v1
+      uses: docker://antonyurchenko/git-release:latest
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+	RELEASE_NAME: ${{GITHUB_REF_NAME}}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        body: |
-          Automatic compilation on a new release
-        draft: false
-        prerelease: false
-        artifacts: "./wxmaxima-x86_64.AppImage"
+        args: ./wxmaxima-x86_64.AppImage
