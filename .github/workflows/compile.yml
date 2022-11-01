@@ -47,7 +47,7 @@ jobs:
 #           flatpak install --or-update flathub org.gnome.Sdk//42 org.gnome.Platform/x86_64/42 -y
 #           flatpak-builder tmp org.flatpak.wxmaxima.yml
     - name: Release
-       uses: softprops/action-gh-release@v1
-       if: startsWith(github.ref, 'refs/tags/')
-       with:
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
             files: wxmaxima-x86_64.AppImage
