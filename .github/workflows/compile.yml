@@ -51,3 +51,7 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
             files: wxmaxima-x86_64.AppImage
+            body: Automatic compilation
+            append_body: true
+            fail_on_unmatched_files: true
+            generate_release_notes: true
