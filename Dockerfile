@@ -7,7 +7,7 @@ RUN apt-get update && apt-get -q -y install git autoconf python binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
     libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
     libgtk-3-dev doxygen libatspi2.0-dev ninja-build make flatpak flatpak-builder \
-    libwebkit2gtk-4.0-dev
+    libwebkit2gtk-4.0-dev appstream appstream-util
 
 # Debian-oldstable provides a sbcl. But as sbcl is evolving rapidly we want to use
 # a more recent version.
