@@ -40,6 +40,7 @@ jobs:
       run: |
            "./build_appimage.sh"
            chmod a+x wxmaxima-x86_64.AppImage
+           ls
 #    - name: build_flatpack
 #      run: |
 #           sudo apt-get install flatpak flatpak-builder
@@ -51,7 +52,3 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
             files: wxmaxima-x86_64.AppImage
-            body: Automatic compilation
-            append_body: true
-            fail_on_unmatched_files: true
-            generate_release_notes: true
