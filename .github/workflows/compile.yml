@@ -41,9 +41,9 @@ jobs:
            "./build_appimage.sh"
            chmod a+x wxmaxima-x86_64.AppImage
            ls -lh
-     - name: Test for Appimage
-       run: |
-            if [ ! -s "wxmaxima-x86_64.AppImage" ]; then echo "AppImage wasn't created!"; fi
+    - name: Test for Appimage
+      run: |
+           if [ ! -s "wxmaxima-x86_64.AppImage" ]; then echo "AppImage wasn't created!"; fi
 #    - name: build_flatpack
 #      run: |
 #           sudo apt-get install flatpak flatpak-builder
