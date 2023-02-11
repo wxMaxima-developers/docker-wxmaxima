@@ -108,7 +108,7 @@ COPY wxmaxima.appdata.xml usr/share/metainfo/
 
 COPY AppRun .
 RUN chmod +x AppRun
-COPY wxmaxima.desktop .
+COPY io.github.wxmaxima_developers.wxMaxima.desktop .
 COPY maxima.png .
 
 WORKDIR /
