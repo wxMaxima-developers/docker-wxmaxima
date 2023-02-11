@@ -40,7 +40,7 @@ jobs:
       run: |
            "./build_appimage.sh"
            chmod a+x wxmaxima-x86_64.AppImage
-           ls
+           ls -lh
 #    - name: build_flatpack
 #      run: |
 #           sudo apt-get install flatpak flatpak-builder
