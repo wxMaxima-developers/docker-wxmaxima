@@ -104,7 +104,7 @@ RUN (cd .. && tar cf - wxmaxima-inst) | tar xf -
 RUN ln -s ../../wxmaxima-inst/bin/wxmaxima usr/bin/wxmaxima
 
 RUN mkdir -p usr/share/metainfo
-COPY wxmaxima.appdata.xml usr/share/metainfo/
+COPY io.github.wxmaxima_developers.wxMaxima.appdata.xml usr/share/metainfo/
 
 COPY AppRun .
 RUN chmod +x AppRun
