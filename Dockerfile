@@ -109,7 +109,11 @@ COPY io.github.wxmaxima_developers.wxMaxima.appdata.xml usr/share/metainfo/
 COPY AppRun .
 RUN chmod +x AppRun
 COPY io.github.wxmaxima_developers.wxMaxima.desktop .
+RUN mkdir -p /usr/share/applications/
+COPY io.github.wxmaxima_developers.wxMaxima.desktop /usr/share/applications/
 COPY maxima.png .
+RUN mkdir -p /usr/share/pixmaps/
+COPY maxima.png /usr/share/pixmaps/io.github.wxmaxima_developers.wxMaxima.png
 
 WORKDIR /
 RUN ARCH=$ARCH appimagetool maxima-squashfs
