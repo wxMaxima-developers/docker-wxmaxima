@@ -105,6 +105,7 @@ RUN ln -s ../../wxmaxima-inst/bin/wxmaxima usr/bin/wxmaxima
 
 RUN mkdir -p usr/share/metainfo
 COPY io.github.wxmaxima_developers.wxMaxima.appdata.xml usr/share/metainfo/
+COPY linux_1.png .
 
 COPY AppRun .
 RUN chmod +x AppRun

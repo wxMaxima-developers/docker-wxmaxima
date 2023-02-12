@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.wxmaxima_developers.wxMaxima</id>
-  <metadata_license>GPL-2.0+</metadata_license>
+  <metadata_license>MIT</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>wxmaxima</name>
   <summary>wxmaxima</summary>
@@ -12,7 +12,7 @@
   <url type="homepage">https://wxmaxima-developers.github.io/wxmaxima/</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://wxmaxima-developers.github.io/wxmaxima/images/linux_1.jpg</image>
+      <image>https://wxmaxima-developers.github.io/wxmaxima/images/linux_1.png</image>
     </screenshot>
   </screenshots>
   <provides>
