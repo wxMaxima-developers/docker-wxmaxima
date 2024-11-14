@@ -1,55 +1,17 @@
 #FROM ubuntu:trusty
-FROM debian:oldstable
+FROM debian:bookworm
 
 ARG ARCH=x86_64
 
-RUN apt-get update && apt-get -q -y install git autoconf python binutils \
+RUN apt-get update && apt-get -q -y install git autoconf python3 binutils \
     texinfo gcc libtool vim desktop-file-utils pkgconf libcairo2-dev \
-    libssl-dev libfuse-dev zsync wget fuse bzip2 gawk g++ gperf \
+    libssl-dev libfuse3-dev zsync wget fuse3 bzip2 gawk g++ gperf \
     libgtk-3-dev doxygen libatspi2.0-dev ninja-build make flatpak flatpak-builder \
-    libwebkit2gtk-4.0-dev appstream appstream-util curl
+    libwebkit2gtk-4.0-dev appstream appstream-util curl sbcl
 
-# Debian-oldstable provides a sbcl. But as sbcl is evolving rapidly we want to use
-# a more recent version.
-RUN wget --quiet 'http://prdownloads.sourceforge.net/sbcl/sbcl-2.2.8-x86-64-linux-binary.tar.bz2' -O /tmp/sbcl.tar.bz2 && \
-    mkdir /sbcl && \
-    tar jxf /tmp/sbcl.tar.bz2 --strip-components=1 -C /sbcl && \
-    cd /sbcl && \
-    sh install.sh && \
-    rm -f /tmp/sbcl.tar.bz2
+RUN apt-get update && apt-get -q -y install cmake
 
-# Debian-oldstable provides too old an cmake3 version for building wxMaxima.
-# At least the debian-oldstable that was active in Jan 2019 did.
-RUN wget --quiet 'https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz' && \
-    zcat cmake-3.13.3.tar.gz | tar xf - && \
-    cd cmake-3.13.3 && \
-    ./bootstrap && \
-    make -s -j 2&& \
-    make install
-
-RUN wget --quiet 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.tar.bz2' && \
-    bzcat wxWidgets-3.2.1.tar.bz2 | tar xf -
-RUN cd wxWidgets-3.2.1 && \
-    ./configure && \
-    make -j 2 && \
-    make install && \
-    ldconfig
-
-RUN git clone https://git.code.sf.net/p/gnuplot/gnuplot-main && \
-    cd gnuplot-main && \
-    git checkout tags/5.2.8
-RUN cd gnuplot-main && \
-    ./prepare && \
-    ./configure --prefix=`pwd`/dist && \
-    make -s -j 2 && \
-    make install
-
-RUN wget --quiet -O libpng-1.2.59.tar 'https://sourceforge.net/projects/libpng/files/libpng12/1.2.59/libpng-1.2.59.tar.gz/download' && \
-    zcat libpng-1.2.59.tar | tar xf -
-RUN cd libpng-1.2.59 && \
-    ./configure  && \
-    make -s -j 2&& \
-    make install
+RUN apt-get update && apt-get -q -y install libwxgtk3.2-dev libwxgtk-webview3.2-dev libwxgtk-media3.2-dev gnuplot  libpng-dev 
 
 ENV maxima_build tags/5.47.0
 
@@ -64,7 +26,7 @@ RUN cd maxima-code && \
     make -s -j 2&& \
     make install
 
-ENV wxmaxima_build Version-24.11.0
+ENV wxmaxima_build Version-23.05.1
 
 RUN git clone https://github.com/wxMaxima-developers/wxmaxima.git && \
     cd wxmaxima && \
@@ -74,7 +36,7 @@ RUN cd wxmaxima && \
     mkdir -p build && \
     cd build && \
     cmake -DCMAKE_INSTALL_PREFIX:PATH=/wxmaxima-inst  -DCMAKE_CXX_FLAGS="-static-libgcc -static-libstdc++" -DCMAKE_LD_FLAGS="-static-libgcc -static-libstdc++" .. && \
-    cmake -- build . && \
+    cmake --build . && \
     cmake --build . -- install
 
 COPY appimagetool-$ARCH.AppImage /
@@ -86,14 +48,6 @@ RUN mkdir maxima-squashfs
 WORKDIR maxima-squashfs
 RUN mkdir -p usr/bin
 
-RUN cp -ar /gnuplot-main/dist gnuplot-inst
-RUN ln -s ../../gnuplot-inst/bin/gnuplot usr/bin/gnuplot
-
-RUN (cd .. && tar cf - sbcl) | tar xf -
-RUN ln -s ../../sbcl/run-sbcl.sh usr/bin/sbcl
-
-RUN mkdir -p usr/lib
-RUN cp -a /usr/local/lib/libwx* /usr/local/lib/libpng* usr/lib
 
 RUN mkdir maxima-inst && \
     (cd ../maxima-code/dist && tar cf - *) | (cd maxima-inst && tar xf -)
@@ -117,4 +71,8 @@ RUN mkdir -p /usr/share/pixmaps/
 COPY maxima.png /usr/share/pixmaps/io.github.wxmaxima_developers.wxMaxima.png
 
 WORKDIR /
-RUN ARCH=$ARCH appimagetool maxima-squashfs
+
+# https://github.com/AppImage/AppImageKit for "-n" option
+RUN ARCH=$ARCH appimagetool -n maxima-squashfs
+
+
