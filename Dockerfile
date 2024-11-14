@@ -13,7 +13,6 @@ RUN apt-get update && apt-get -q -y install cmake
 
 RUN apt-get update && apt-get -q -y install libwxgtk3.2-dev libwxgtk-webview3.2-dev libwxgtk-media3.2-dev gnuplot  libpng-dev 
 
-
 ENV maxima_build tags/5.47.0
 
 RUN git clone https://git.code.sf.net/p/maxima/code maxima-code && \
